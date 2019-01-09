@@ -75,7 +75,7 @@
                             "overrideInputs": {},
                             "condition": "succeeded()",
                             "inputs": {
-                                "connectedServiceNameARM": "177db07a-9007-4c3f-a075-3a6e51d4fa5c",
+                                "connectedServiceNameARM": "$(Parameters.azureSubscriptionEndpoint)",
                                 "scriptLocation": "inlineScript",
                                 "scriptPath": "",
                                 "inlineScript": "httpApplicationRoutingZone=$(az aks show -g $PARAMETERS_AZURERESOURCEGROUP -n $PARAMETERS_KUBERNETESCLUSTER -o json | jq -r .addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName)\necho \"##vso[task.setvariable variable=httpApplicationRoutingZone;]$httpApplicationRoutingZone\"",
@@ -125,7 +125,6 @@
                                 "azureSubscriptionEndpoint": "$(Parameters.azureSubscriptionEndpoint)",
                                 "azureResourceGroup": "$(Parameters.azureResourceGroup)",
                                 "kubernetesCluster": "$(Parameters.kubernetesCluster)",
-                                "kubernetesServiceEndpoint": "$(Parameters.kubernetesServiceEndpoint)",
                                 "namespace": "",
                                 "command": "init",
                                 "chartType": "Name",
@@ -193,7 +192,6 @@
                                 "azureSubscriptionEndpoint": "$(Parameters.azureSubscriptionEndpoint)",
                                 "azureResourceGroup": "$(Parameters.azureResourceGroup)",
                                 "kubernetesCluster": "$(Parameters.kubernetesCluster)",
-                                "kubernetesServiceEndpoint": "$(Parameters.kubernetesServiceEndpoint)",
                                 "namespace": "$(Environment)",
                                 "command": "upgrade",
                                 "chartType": "FilePath",
@@ -261,7 +259,6 @@
                                 "azureSubscriptionEndpoint": "$(Parameters.azureSubscriptionEndpoint)",
                                 "azureResourceGroup": "$(Parameters.azureResourceGroup)",
                                 "kubernetesCluster": "$(Parameters.kubernetesCluster)",
-                                "kubernetesServiceEndpoint": "$(Parameters.kubernetesServiceEndpoint)",
                                 "namespace": "$(Environment)",
                                 "command": "upgrade",
                                 "chartType": "FilePath",
@@ -325,8 +322,7 @@
                 "inputs": [
                     {
                         "options": {
-                            "Azure Resource Manager": "Azure Resource Manager",
-                            "Kubernetes Service Connection": "Kubernetes Service Connection"
+                            "Azure Resource Manager": "Azure Resource Manager"
                         },
                         "properties": {
                             "EditableOptions": "false"
@@ -372,16 +368,6 @@
                         "type": "pickList",
                         "helpMarkDown": "Select an Azure Kubernetes Service cluster.",
                         "visibleRule": "connectionType = Azure Resource Manager",
-                        "groupName": ""
-                    },
-                    {
-                        "name": "kubernetesServiceEndpoint",
-                        "label": "Kubernetes Service Connection",
-                        "defaultValue": "",
-                        "required": true,
-                        "type": "connectedService:kubernetes",
-                        "helpMarkDown": "Select a Kubernetes service connection.",
-                        "visibleRule": "connectionType = Kubernetes Service Connection",
                         "groupName": ""
                     }
                 ],
@@ -480,7 +466,7 @@
                             "overrideInputs": {},
                             "condition": "succeeded()",
                             "inputs": {
-                                "connectedServiceNameARM": "177db07a-9007-4c3f-a075-3a6e51d4fa5c",
+                                "connectedServiceNameARM": "$(Parameters.azureSubscriptionEndpoint)",
                                 "scriptLocation": "inlineScript",
                                 "scriptPath": "",
                                 "inlineScript": "httpApplicationRoutingZone=$(az aks show -g $PARAMETERS_AZURERESOURCEGROUP -n $PARAMETERS_KUBERNETESCLUSTER -o json | jq -r .addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName)\necho \"##vso[task.setvariable variable=httpApplicationRoutingZone;]$httpApplicationRoutingZone\"",
@@ -530,7 +516,6 @@
                                 "azureSubscriptionEndpoint": "$(Parameters.azureSubscriptionEndpoint)",
                                 "azureResourceGroup": "$(Parameters.azureResourceGroup)",
                                 "kubernetesCluster": "$(Parameters.kubernetesCluster)",
-                                "kubernetesServiceEndpoint": "$(Parameters.kubernetesServiceEndpoint)",
                                 "namespace": "",
                                 "command": "init",
                                 "chartType": "Name",
@@ -598,7 +583,6 @@
                                 "azureSubscriptionEndpoint": "$(Parameters.azureSubscriptionEndpoint)",
                                 "azureResourceGroup": "$(Parameters.azureResourceGroup)",
                                 "kubernetesCluster": "$(Parameters.kubernetesCluster)",
-                                "kubernetesServiceEndpoint": "$(Parameters.kubernetesServiceEndpoint)",
                                 "namespace": "$(Environment)",
                                 "command": "upgrade",
                                 "chartType": "FilePath",
@@ -666,7 +650,6 @@
                                 "azureSubscriptionEndpoint": "$(Parameters.azureSubscriptionEndpoint)",
                                 "azureResourceGroup": "$(Parameters.azureResourceGroup)",
                                 "kubernetesCluster": "$(Parameters.kubernetesCluster)",
-                                "kubernetesServiceEndpoint": "$(Parameters.kubernetesServiceEndpoint)",
                                 "namespace": "$(Environment)",
                                 "command": "upgrade",
                                 "chartType": "FilePath",
@@ -721,8 +704,7 @@
                 "inputs": [
                     {
                         "options": {
-                            "Azure Resource Manager": "Azure Resource Manager",
-                            "Kubernetes Service Connection": "Kubernetes Service Connection"
+                            "Azure Resource Manager": "Azure Resource Manager"
                         },
                         "properties": {
                             "EditableOptions": "false"
@@ -768,16 +750,6 @@
                         "type": "pickList",
                         "helpMarkDown": "Select an Azure Kubernetes Service cluster.",
                         "visibleRule": "connectionType = Azure Resource Manager",
-                        "groupName": ""
-                    },
-                    {
-                        "name": "kubernetesServiceEndpoint",
-                        "label": "Kubernetes Service Connection",
-                        "defaultValue": "",
-                        "required": true,
-                        "type": "connectedService:kubernetes",
-                        "helpMarkDown": "Select a Kubernetes service connection.",
-                        "visibleRule": "connectionType = Kubernetes Service Connection",
                         "groupName": ""
                     }
                 ],
